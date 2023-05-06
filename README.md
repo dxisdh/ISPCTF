@@ -12,7 +12,7 @@ Writeup các bài đã solve trên web CTF của CLB ISP
 | [rsa_2] | Crypto | `ISPCTF{Now_you_know_factor_N}`|
 | [Pointer 2] | RE | `ISP{302753d5b52596eb75b89c11cc30e5c7}`|
 | [Basic For] | Forensics | `ISPCTF{H4i_d3p_tr41_v0_c0_10}`|
-| [New Chunk] | Forensics | `ISPCTF{Thank_to_fix_this_file`|
+| [New Chunk] | Forensics | `ISPCTF{Thank_to_fix_this_file}`|
 | [Metadata is so good] | Forensics | `ISPCTF{137_ch3ck_m3tadata}`|
 | [What is File Format?] | Forensics | `ISPCTF{0n3_f0r_a11_d3kn}`|
 | [QR] | Forensics | `ISPCTF{h4i_d3p_z4i_y34h_y34h}`|
