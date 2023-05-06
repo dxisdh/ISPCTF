@@ -8,7 +8,7 @@ Writeup các bài đã solve trên web CTF của CLB ISP
 | [TOR74](#TOR74) | Crypto | `ISPCTF{N0w_u_kN0W_how_2_use_R47}`|
 | [rsa_1](#rsa-1) | Crypto | `ISPCTF{welcome_to_rsa}`|
 | [Xor Cipher] | Crypto | `ISPCTF{X0r_C1ph3r_1s_s0_S1mpl3}`|
-| [rsa_3] | Crypto | `ISPCTF{e=1_any_thing_not_change}`|
+| [rsa_3](#rsa-3) | Crypto | `ISPCTF{e=1_any_thing_not_change}`|
 | [rsa_2] | Crypto | `ISPCTF{Now_you_know_factor_N}`|
 | [Pointer 2] | RE | `ISP{302753d5b52596eb75b89c11cc30e5c7}`|
 | [Basic For] | Forensics | `ISPCTF{H4i_d3p_tr41_v0_c0_10}`|
@@ -104,3 +104,20 @@ Nhập key ta tìm được flag
 
 <img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/rsa_1/rsa1_4.png>
 Flag: ISPCTF{welcome_to_rsa}
+
+# rsa_3
+
+[cipher](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/rsa_3/cipher)
+[rsa_3.py](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/rsa_3/rsa_3.py)
+#### Solution
+Tải source code về, ta thấy trong hàm encrypt thực hiện chuyển từng kí tự trong flag ở hàm init thành mã ASCII, sau đó nâng lên lũy thừa 1 mod n trong hàm init. Sau đó chuyển sang 1 xâu byte có độ dài là 5 và lưu vào một list tên là cipher. List đó sẽ được viết vào file cipher, kết thúc một kí tự sẽ xuống dòng 1 lần. Hàm decrypt đọc file cipher sau đó tách từng kí tự thành từng xâu byte và chuyển từng xâu byte đó sang dạng số nguyên và decrypt bằng key riêng. Nhưng vì e = 1 nên các kí tự trong file cipher không bị biến đổi. Ta mở file cipher bằng Notepad, thu được flag
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/rsa_3/rsa3_1.png>
+Flag: ISPCTF{e=1_any_thing_not_change}
+
+# rsa_2
+
+[cipher.txt](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/rsa_2/cipher.txt)
+[rsa_2.py](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/rsa_2/rsa_2.py)
+#### Solution
+Mở source code lên, ta có 2 giá trị n và e. Ta thấy trong hàm rsa thực hiện encrypt từng kí tự trong flag thành số với phép toán lấy mod n của mess^-e
