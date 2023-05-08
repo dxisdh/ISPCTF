@@ -186,4 +186,5 @@ Mở HxD lên để sửa lại đoạn chunk chứa định dạng ảnh: `37 4
 
 Sau khi sửa xong, ta thêm định dạng ảnh .jpeg vào đằng sau tên file và thu được flag:
 <img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/What%20is%20File%20Format/mizuku.jpeg>
+
 Flag: `ISPCTF{0n3_f0r_a11_d3kn}`
