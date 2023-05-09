@@ -10,17 +10,18 @@ Writeup các bài đã solve trên web CTF của CLB ISP
 | [Xor Cipher] | Crypto | `ISPCTF{X0r_C1ph3r_1s_s0_S1mpl3}`|
 | [rsa_3](#rsa-3) | Crypto | `ISPCTF{e=1_any_thing_not_change}`|
 | [rsa_2](#rsa-2) | Crypto | `ISPCTF{Now_you_know_factor_N}`|
+| [Hash Number](#Hash-Number) | Crypto | `ISPCTF{That_iS_Special_Number}` |
 | [Pointer 2] | RE | `ISP{302753d5b52596eb75b89c11cc30e5c7}`|
 | [Basic Rev] | RE | `ispctf{St4RbuCk5_c0ffee}`|
 | [Basic For](#Basic-For) | Forensics | `ISPCTF{H4i_d3p_tr41_v0_c0_10}`|
 | [New Chunk](#New-Chunk) | Forensics | `ISPCTF{Thank_to_fix_this_file}`|
 | [Metadata is so good](#Metadata-is-so-good) | Forensics | `ISPCTF{137_ch3ck_m3tadata}`|
 | [What is File Format?](#What-is-File-Format) | Forensics | `ISPCTF{0n3_f0r_a11_d3kn}`|
-| [QR] | Forensics | `ISPCTF{h4i_d3p_z4i_y34h_y34h}`|
-| [Catch Me] | Forensics | `ISPCTF{c4tch_m3}`|
-| [Gờ rép] | Forensics | `ISPCTF{G00d_luck_N3xt_Y34r}`|
-| [Beautiful day to drive] | OSINT | `ISPCTF{MEANDERING_WAY}`|
-| [Find me before they do!] | OSINT | `ISPCTF{860-232-8886}`|
+| [QR](#QR) | Forensics | `ISPCTF{h4i_d3p_z4i_y34h_y34h}`|
+| [Catch Me](#Catch-Me) | Forensics | `ISPCTF{c4tch_m3}`|
+| [Gờ rép](#Gờ-rép) | Forensics | `ISPCTF{G00d_luck_N3xt_Y34r}`|
+| [Beautiful day to drive :>](#Beautiful-day-to-drive) | OSINT | `ISPCTF{MEANDERING_WAY}`|
+| [Find me before they do!](#Find-me-before-they-do) | OSINT | `ISPCTF{860-232-8886}`|
 | [Find me before they do! (2)] | OSINT | `ISPCTF{70_FOUR_MILE_RD}`|
 | [Conversation] | General | `ISPCTF{here_is_random_messageBruhh}`|
 
@@ -142,7 +143,27 @@ Sau khi chạy chương trình ta thu được 1 số là 73, tương đương v
 
 Dùng tool chuyển đổi hệ thập phân sang bảng mã ASCII, ta thu được flag:
 <img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/rsa_2/rsa2_2.png>
+
 Flag: `ISPCTF{Now_you_know_factor_N}`
+
+# Hash Number
+Con số yêu thích của bạn là gì?
+
+Form Flag: ISPCTF{}
+
+[favorite_num.py](https://github.com/dxisdh/ISPCTF/tree/main/File%20chall/Hash%20Number)
+#### Solution
+Mở source code lên, ta thấy ở hàm main() có cho biết chiều dài của số cần tìm là 8 chữ số. Ta viết lại hàm main như sau:
+```
+def main():
+    for i in range (10000000,99999999):
+         if check_input(str(i)) == 1:
+             print(str(i))
+```
+Ở đây ta sẽ viết một vòng lặp chạy từ 10000000 cho đến 99999999, sau đó kiểm tra xem trong khoảng đó nếu có số nào trả về kết quả 1 thì in ra số đó
+Chương trình sẽ trả lại cho ta con số cần tìm. Khôi phục lại code ban đầu, chạy lại chương trình, nhập số vừa tìm được và nhận flag
+
+Flag: `ISPCTF{That_iS_Special_Number}`
 
 # Basic For
 
@@ -188,3 +209,110 @@ Sau khi sửa xong, ta thêm định dạng ảnh .jpeg vào đằng sau tên fi
 <img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/What%20is%20File%20Format/mizuku.jpeg>
 
 Flag: `ISPCTF{0n3_f0r_a11_d3kn}`
+
+# QR
+
+Một nửa còn lại của mã QR đang ở đâu???
+
+[haidz.png](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/QR/haidz.png)
+#### Solution
+Dựa trên đề bài, ta xem thử kích thước của ảnh bằng cách xem Properties
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/QR/QR_4.png>
+Ta có thể thấy chiều dài của ảnh là 2100 pixels còn chiều cao của ảnh là 1000 pixels. Ta sẽ sửa 4 bit chiều cao của ảnh bằng cách sử dụng HxD. Ta đổi 2000 sang hệ 16 được 07D0. Sau đó thay 4 bit chiều cao của ảnh trong IHDR chunk: `00 00 03 E8` -> `00 00 07 D0`
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/QR/QR_1.png>
+Lưu lại và ta có mã QR đầy đủ
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/QR/QR.png>
+Sử dụng web đọc QR ta được 1 đường link
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/QR/QR_2.png>
+Mở link đó và ta nhận được flag
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/QR/QR_3.png>
+
+Flag: `ISPCTF{h4i_d3p_z4i_y34h_y34h}`
+
+# Catch Me
+
+Form Flag: ISPCTF{}
+
+[catch_me.pcapng](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Catch%20Me/catch_me.pcapng)
+#### Solution
+Ta nhận được một file có đuôi .pcapng. Ta sẽ sử dụng Wireshark để phân tích. Mở Wireshark lên, ta sẽ thử phân tích protocol TCP. Chọn Analyze -> Follow -> TCP Stream
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Catch%20Me/catchme_1.png>
+Ta nhận được flag:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Catch%20Me/catchme_2.png>
+
+Flag: `ISPCTF{c4tch_m3}`
+
+# Gờ rép
+
+[SVNQe04wdF9hX1IzQWxfRmxBZ30.txt](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/G%E1%BB%9D%20r%C3%A9p/SVNQe04wdF9hX1IzQWxfRmxBZ30.txt)
+#### Solution
+Ta nhận được một file .txt. Dựa vào đề bài, ta sẽ sử dụng grep để tìm các mảnh ghép của flag (ở đây mình đổi tên file sang text.txt). Đầu tiên ta sẽ tìm mảnh ghép đầu tiên bằng cách nhập: `grep 'ISPCTF' text.txt`. Ta được mảnh ghép đầu tiên:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/G%E1%BB%9D%20r%C3%A9p/grep_1.png>
+Ta đoán phía sau sẽ cần dấu `_` nên ta sẽ nhập với cú pháp tương tự, chỉ cần thay `ISPCTF` sang `_`. Ta tìm được hai mảnh ghép tiếp theo:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/G%E1%BB%9D%20r%C3%A9p/grep_2.png>
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/G%E1%BB%9D%20r%C3%A9p/grep_3.png>
+Sau khi nhìn mảnh ghép thứ 3 thì ta đoán còn 1 mảnh ghép cuối cùng. Thế nên ta sẽ cần dấu } để kết thúc. Làm tương tự như trên, ta được mảnh ghép cuối cùng:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/G%E1%BB%9D%20r%C3%A9p/grep_4.png>
+Ghép tất cả các mảnh ghép lại ta được flag hoàn chỉnh.
+
+Flag: `ISPCTF{G00d_luck_N3xt_Y34r}`
+
+# Beautiful day to drive :>
+
+Hôm nay là một ngày đẹp trời để lái xe hóng gió, liệu các thám tử tài ba có thể chỉ ra con đường mà tôi đang đi không ? Ví dụ: Tôi đang ở đường Trần Phú thì form flag sẽ là: ISPCTF{TRAN_PHU}
+
+Hint: Tôi đang ở đâu đó ở bang Texas, Mỹ
+
+[IMG_1485.MOV](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Beautiful%20day%20to%20drive/IMG_1485.MOV)
+#### Solution
+Ta nhận được 1 video về một cảnh quay. Nếu chạy bằng phần mềm chạy video thì ta chỉ thấy một phần của tên đường:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Beautiful%20day%20to%20drive/beautiful_1.png>
+Cho nên ta sẽ sử dụng exiftool để tìm thông tin về đoạn video. Ta nhập `exiftool IMG_1485.MOV` vào cửa sổ lệnh. Và ta tìm được định vị của đoạn video là: `32°58'51.2"N 96°46'43.0"W`
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Beautiful%20day%20to%20drive/beautiful_2.png>
+Mở Google Maps và nhập định vị trên, ta tìm được tên đường, cũng chính là flag:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Beautiful%20day%20to%20drive/beautiful_3.png>
+
+Flag: `ISPCTF{MEANDERING_WAY}`
+
+# Find me before they do!
+
+I'm a hacker on the run from the cops. But my friend, I'll leave some clues for you to find me. Note this carefully: I usually eat sushi in a restaurant with a nearby view that looks like this. After that, I often go to the park and sit by the nearby lake, which may be called Batterson. If you find out where the restaurant is, please contact the sushi restaurant. Just tell the restaurant owner their phone number, and I'll know it's you who called. Then wait for my next instruction! If you don't hear anything from me, I may have been caught!
+
+Flag form: ISPCTF{}
+
+[340494030_242932678297283_41190817524115878_n.jpg](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Find%20me%20before%20they%20do/340494030_242932678297283_41190817524115878_n.jpg)
+#### Solution
+Ta nhận được một bức ảnh. Ta sẽ dựa vào tòa nhà có chữ CHASE để xem nó là gì. Sử dụng Google Lens để tìm kiếm, ta biết được tòa nhà đó là Chase Bank.
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Find%20me%20before%20they%20do/findme_5.png>
+Tuy nhiên lại có rất nhiều chi nhánh của ngân hàng Chase, thế nên ta sẽ thu hẹp phạm vi tìm kiếm bằng cách dựa vào câu sau: `After that, I often go to the park and sit by the nearby lake, which may be called Batterson.` (Sau đó, tôi thường đến công viên và ngồi bên cạnh một cái hồ, tên của công viên đó chắc là Batterson). Điều đó cho biết rằng ta chỉ cần tìm các chi nhánh ngân hàng Chase gần công viên Batterson, sau đó xem chi nhánh nào có bức ảnh gần giống với bức ảnh ta có. Thì trong số đó có chi nhánh tại đường West Hartford là giống nhất:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Find%20me%20before%20they%20do/findme_1.png>
+Mà tác giả đã nói rằng mình hay ăn sushi ở một nhà hàng, thế nên ta thấy ngay bên cạnh ngân hàng đó ta có một nhà hàng sushi tên là ICHIRO HIBACHI & SUSHI:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Find%20me%20before%20they%20do/findme_2.png>
+Sau khi tìm được nhà hàng đó, tiếp theo ta cần tìm tên chủ nhà hàng. Tra google cụm `Ichiro Hibachi & Sushi owner`, ta tìm được 1 trang web có tổng hợp thông tin về nhà hàng này và ta tìm được tên chủ là Andy Pan:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Find%20me%20before%20they%20do/findme_3.png>
+Đề bài yêu cầu tìm số điện thoại của chủ nhà hàng, nên ta lại tra google cụm `Andy Pan Ichiro Hibachi & Sushi`, ta tìm được 1 trang web có tổng hợp những người tên là Andy Pan. Sử dụng tổ hợp Ctrl + F và ghi owner để loại trừ dần và ta tìm được 2 số:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Find%20me%20before%20they%20do/findme_4.png>
+Thế nhưng nếu truy cập vào trang web của nhà hàng thì ta sẽ thấy số đầu tiên là của nhà hàng, chứ không phải của chủ nhà hàng. Cho nên số điện thoại còn lại chính là số điện thoại của chủ cửa hàng:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Find%20me%20before%20they%20do/findme_6.png>
+Sửa lại số điện thoại theo format: XXX-XXX-XXXX và ta thu được flag.
+
+Flag: `ISPCTF{860-232-8886}`
