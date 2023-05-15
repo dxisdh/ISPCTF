@@ -20,7 +20,7 @@ Writeup các bài đã solve trên web CTF của CLB ISP
 | [QR](#QR) | Forensics | `ISPCTF{h4i_d3p_z4i_y34h_y34h}`|
 | [Catch Me](#Catch-Me) | Forensics | `ISPCTF{c4tch_m3}`|
 | [Gờ rép](#Gờ-rép) | Forensics | `ISPCTF{G00d_luck_N3xt_Y34r}`|
-| [Good, nice, excellent] | Forensics | `ISPCTF{y0u_kn0w_m0r3_t00l`|
+| [Good, nice, excellent] | Forensics | `ISPCTF{y0u_kn0w_m0r3_t00l}`|
 | [Malware] | Forensics | `ISPCTF{trojan.midie/cometer`|
 | [Beautiful day to drive :>](#Beautiful-day-to-drive) | OSINT | `ISPCTF{MEANDERING_WAY}`|
 | [Find me before they do!](#Find-me-before-they-do) | OSINT | `ISPCTF{860-232-8886}`|
