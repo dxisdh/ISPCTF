@@ -13,6 +13,7 @@ Writeup các bài đã solve trên web CTF của CLB ISP
 | [Hash Number](#Hash-Number) | Crypto | `ISPCTF{That_iS_Special_Number}` |
 | [Pointer 2] | RE | `ISP{302753d5b52596eb75b89c11cc30e5c7}`|
 | [Basic Rev] | RE | `ispctf{St4RbuCk5_c0ffee}`|
+| [Pointer 1] | RE | `flag{5h1n1n'_5t4r5_ju5t_l1k3_ur_sm1l3}`|
 | [Basic For](#Basic-For) | Forensics | `ISPCTF{H4i_d3p_tr41_v0_c0_10}`|
 | [New Chunk](#New-Chunk) | Forensics | `ISPCTF{Thank_to_fix_this_file}`|
 | [Metadata is so good](#Metadata-is-so-good) | Forensics | `ISPCTF{137_ch3ck_m3tadata}`|
@@ -20,8 +21,10 @@ Writeup các bài đã solve trên web CTF của CLB ISP
 | [QR](#QR) | Forensics | `ISPCTF{h4i_d3p_z4i_y34h_y34h}`|
 | [Catch Me](#Catch-Me) | Forensics | `ISPCTF{c4tch_m3}`|
 | [Gờ rép](#Gờ-rép) | Forensics | `ISPCTF{G00d_luck_N3xt_Y34r}`|
-| [Good, nice, excellent] | Forensics | `ISPCTF{y0u_kn0w_m0r3_t00l}`|
-| [Malware] | Forensics | `ISPCTF{trojan.midie/cometer`|
+| [Good, nice, excellent](#Good-nice-excellent) | Forensics | `ISPCTF{y0u_kn0vv_m0r3_t0o1}`|
+| [Malware](#Malware) | Forensics | `ISPCTF{trojan.midie/cometer}`|
+| [Information PCAP](#Information-PCAP) | Forensics | `ISPCTF{Rice_as_one}`|
+| [Không chỉ là giao thức](#Không-chỉ-là-giao-thức) | Forensics | `ISPCTF{Ch3cK_Pr0toco1}`|
 | [Beautiful day to drive :>](#Beautiful-day-to-drive) | OSINT | `ISPCTF{MEANDERING_WAY}`|
 | [Find me before they do!](#Find-me-before-they-do) | OSINT | `ISPCTF{860-232-8886}`|
 | [Find me before they do! (2)] | OSINT | `ISPCTF{70_FOUR_MILE_RD}`|
@@ -268,6 +271,80 @@ Sau khi nhìn mảnh ghép thứ 3 thì ta đoán còn 1 mảnh ghép cuối cù
 Ghép tất cả các mảnh ghép lại ta được flag hoàn chỉnh.
 
 Flag: `ISPCTF{G00d_luck_N3xt_Y34r}`
+
+# Good, nice, excellent
+
+[Noice.zip](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Noice/Noice.zip)
+#### Solution
+Ta nhận được 1 file zip trong đó có chứa một file ảnh và một file text. Mở thử file text ra, ta thấy bên trong có dãy số nhị phân bên cạnh các kí tự
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Noice/noice_1.png>
+Ta thấy tên file có điều gì đó đặc biệt. Nếu ta thử đổi 12 ra số nhị phân ta sẽ nhận được 1100. Thử tìm 1100 trong file text, ta sẽ ghép được các kí tự vào với nhau và cuối cùng nhận được: `Stegosuite`. Ta sẽ dùng Stegosuite để phân tích ảnh và nhận được flag.
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Noice/noice_2.png>
+
+Flag: `ISPCTF{y0u_kn0vv_m0r3_t0o1}`
+
+# Malware
+
+AI hiện có thể bị nhiễm phần mềm độc hại! Sau khi hỏi ChatGPT về công thức nấu súp cà chua, công thức nấu ăn main_background.png đã được cung cấp. Sau khi chạy các lệnh md5sum recipe.png > result.txt và cat result.txt, kết quả đầu ra sau đây được nhận: 737bc4c1e193d54abcbac2bac6ff89fe10bb3f31
+
+ISPCTF{Popular threat label}
+
+Gợi ý: Sản phẩm chống virus. Công cụ quét trang web.
+#### Solution
+Dựa vào gợi ý, ta sẽ tra thử website chuyên quét và diệt virus trên mạng và tìm được trang web VirusTotal. Nhập phần kết quả kia vào mục Search, ta sẽ tìm được flag.
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Malware/malware_1.png>
+
+Flag: `ISPCTF{trojan.midie/cometer}`
+
+# Information PCAP
+
+[lmaolmao.pcapng](https://github.com/dxisdh/ISPCTF/tree/main/File%20chall/Information%20PCAP)
+#### Solution
+Ta nhận được một file pcapng. Ta sẽ thử phân tích file này bằng Wireshark. Mở Wireshark lên, ta sẽ thử phân tích protocol TCP. Chọn Analyze -> Follow -> TCP Stream.
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Information%20PCAP/infor_1.png>
+Ta nhận thấy dấu hiệu của file JPEG dựa vào định dạng JFIF sau khi follow TCP. Cho nên ta đoán rằng file đã bị chỉnh sửa định dạng. Chuyển Show data as ASCII -> Show data as Raw để lấy mã hex.
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Information%20PCAP/infor_2.png>
+Mở file pcapng bằng HxD để thay thế mã hex hiện tại bằng mã hex mới (bỏ 4 dòng đầu tiên)
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Information%20PCAP/infor_3.png>
+Lưu lại và đổi đuôi file sang jpeg và ta nhận được một bức ảnh:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Information%20PCAP/lmaolmao.jpeg>
+Ta thấy rằng flag đã bị giấu kín. Ta sẽ sử dụng futureboys để phân tích:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Information%20PCAP/infor_4.png>
+Nhấn Submit và ta sẽ nhận được flag:
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Information%20PCAP/infor_5.png>
+
+Flag: `ISPCTF{Rice_as_one}`
+
+# Không chỉ là giao thức
+
+[file.pcapng](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Kh%C3%B4ng%20ch%E1%BB%89%20l%C3%A0%20giao%20th%E1%BB%A9c/file.pcapng)
+#### Solution
+Ta nhận được một file pcapng. Ta sẽ thử phân tích file này bằng Wireshark. Mở Wireshark lên, ta sẽ thử phân tích protocol TCP. Chọn Analyze -> Follow -> TCP Stream. Sau đó ta sẽ tìm điều khả nghi dựa vào các dòng Stream và tìm được tại Stream 9.
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Kh%C3%B4ng%20ch%E1%BB%89%20l%C3%A0%20giao%20th%E1%BB%A9c/not_protocol_1.png>
+
+Ta nhận thấy dấu hiệu của file JPEG dựa vào định dạng JFIF sau khi follow TCP. Cho nên ta đoán rằng file đã bị chỉnh sửa định dạng. Chuyển Show data as ASCII -> Show data as Raw để lấy mã hex.
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Kh%C3%B4ng%20ch%E1%BB%89%20l%C3%A0%20giao%20th%E1%BB%A9c/not_protocol_2.png>
+
+Mở file pcapng bằng HxD để thay thế mã hex hiện tại bằng mã hex mới (bỏ dòng đầu tiên)
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Kh%C3%B4ng%20ch%E1%BB%89%20l%C3%A0%20giao%20th%E1%BB%A9c/not_protocol_3.png>
+
+Lưu lại và đổi đuôi file sang jpeg và ta nhận được flag.
+
+<img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Kh%C3%B4ng%20ch%E1%BB%89%20l%C3%A0%20giao%20th%E1%BB%A9c/file.jpeg>
+
+Flag: `ISPCTF{Ch3cK_Pr0toco1}`
 
 # Beautiful day to drive :>
 
