@@ -11,7 +11,7 @@ Writeup các bài đã solve trên web CTF của CLB ISP
 | [rsa_3](#rsa-3) | Crypto | `ISPCTF{e=1_any_thing_not_change}`|
 | [rsa_2](#rsa-2) | Crypto | `ISPCTF{Now_you_know_factor_N}`|
 | [Hash Number](#Hash-Number) | Crypto | `ISPCTF{That_iS_Special_Number}` |
-| [Pointer 2] | RE | `ISP{302753d5b52596eb75b89c11cc30e5c7}`|
+| [Pointer 2](#Pointer-2) | RE | `ISP{302753d5b52596eb75b89c11cc30e5c7}`|
 | [Basic Rev] | RE | `ispctf{St4RbuCk5_c0ffee}`|
 | [Pointer 1] | RE | `flag{5h1n1n'_5t4r5_ju5t_l1k3_ur_sm1l3}`|
 | [Basic For](#Basic-For) | Forensics | `ISPCTF{H4i_d3p_tr41_v0_c0_10}`|
@@ -170,6 +170,68 @@ Chương trình sẽ trả lại cho ta con số cần tìm. Khôi phục lại 
 
 Flag: `ISPCTF{That_iS_Special_Number}`
 
+# Pointer 2
+
+[pointer2.c](https://github.com/dxisdh/ISPCTF/tree/main/File%20chall/Pointer%202)
+#### Solution
+Mở source code lên, ta sẽ phân tích hàm fuzz trước. 
+```
+int fuzz(char *key) {
+    char char1[10], char2[10], char3[10], char4[10];
+    memset(char1, 0, 10);
+    memset(char2, 0, 10);
+    memset(char3, 0, 10);
+    memset(char4, 0, 10);
+
+    strncpy(char1, key, 8);
+    strncpy(char2, key + 8, 8);
+    strncpy(char3, key + 16, 8);
+    strncpy(char4, key + 24, 8);
+
+    memset(key, 0, 32);
+
+    strcat(key, char3);
+    strcat(key, char1);
+    strcat(key, char4);
+    strcat(key, char2);
+
+    return 1;
+}
+```
+Hàm fuzz sẽ nhận kí tự key làm đầu vào và sẽ trả lại một số nguyên. Ta sẽ khởi tạo 4 mảng kí tự char1, char2, char3, char4 gồm 10 phần tử và tất cả các phần tử đều được đặt bằng 0 nhờ hàm memset. Sau đó, hàm strncpy sẽ sao chép 8 kí tự đầu tiên vào char1, 8 kí tự tiếp theo vào char2, 8 kí tự sau vào char3 và 8 kí tự cuối cùng vào char4. Sau đó hàm memset sẽ lại đặt 32 kí tự trong key bằng 0. Tiếp đó, hàm strcat sẽ nối key với char3, char1, char4 và char2. Cuối cùng hàm sẽ trả về giá trị 1 sau khi thực hiện các dòng lệnh phía trên.
+
+Tiếp theo ta sẽ đi vào hàm main().
+```
+int main(int argc, char **argv) {
+    printf("Let's see if you passed the right flag...\n");
+    if (argc == 2)
+        if (strlen(*(argv + 1)) == 32)
+            if (!fuzz(*(argv + 1)))
+                printf("Wrong Direction.");
+            else if (!strncmp(*(argv + 1), "302753d5b52596eb75b8", 0x14))
+                if (!strncmp(*(argv + 1) + 20, "9c11cc30e5c7", 12))
+                    printf("True.");
+                else
+                    printf("Try again.");
+            else
+                printf("Try again.");
+        else
+            printf("Try again.");
+    else
+        printf("Try again.");
+}
+```
+Hàm main() sẽ thực hiện một loạt các câu lệnh if - else để kiểm tra các điều kiện. Đầu tiên chương trình sẽ kiểm tra số lượng tham số ta truyền vào có bằng 2 hay không, nếu không thì sẽ in ra "Try again". Tiếp đó chương trình sẽ kiểm tra xem chiều dài của giá trị mà con trỏ của tham số dòng lệnh đầu tiên chứa có bằng 32 không, nếu không thì sẽ in ra "Try again", từ đó ta biết được flag có chiều dài bằng 32. Chương trình sẽ tiếp tục kiểm tra giá trị mà hàm fuzz với giá trị nhập vào là giá trị mà con trỏ của tham số dòng lệnh đầu tiên chứa trả lại có khác giá trị 1 hay không, nếu có thì sẽ in ra "Wrong Direction" và nếu không thì in ra "Try again". Ta sẽ phân tích câu lệnh if cuối cùng:
+```
+else if (!strncmp(*(argv + 1), "302753d5b52596eb75b8", 0x14))
+     if (!strncmp(*(argv + 1) + 20, "9c11cc30e5c7", 12))
+         printf("True.");
+     else
+         printf("Try again.");
+```
+Ta thấy 0x14 là 1 số được biểu diễn dưới dạng hệ thập lục phân và là số 20 trong hệ thập phân. Hàm strncmp sẽ so sánh xem 20 kí tự đầu tiên của giá trị mà con trỏ của tham số dòng lệnh đầu tiên chứa có bằng với xâu 302753d5b52596eb75b8 hay không, nếu có sẽ so sánh tiếp 12 kí tự tiếp theo của giá trị mà con trỏ của tham số dòng lệnh đầu tiên chứa và đã thêm 20 kí tự trên có bằng với xâu 9c11cc30e5c7 hay không, nếu đúng sẽ in ra "True." còn nếu sai sẽ in ra "Try again.". Từ đó ta biết flag cần tìm là `302753d5b52596eb75b89c11cc30e5c7`.
+
+Flag: `ISP{302753d5b52596eb75b89c11cc30e5c7}`
 # Basic For
 
 [haianh.jpg](https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/Basic%20For/haianh.jpg)
@@ -190,6 +252,7 @@ Ta nhận được một file. Mở file bằng Notepad, ta thấy dòng đầu 
 
 Sau khi sửa xong, ta thêm định dạng ảnh .png vào đằng sau tên file và thu được flag:
 <img src= https://github.com/dxisdh/ISPCTF/blob/main/File%20chall/New%20Chunk/newchunk_2.png>
+
 Flag: `ISPCTF{Thank_to_fix_this_file}`
 
 # Metadata is so good
