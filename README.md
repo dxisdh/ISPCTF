@@ -2,31 +2,31 @@
 Writeup các bài đã solve trên web CTF của CLB ISP
 | Title | Category | Flag | 
 | :----- | :---------- | :-------------- | 
-| [Rail_fence](#Rail-fence) | Crypto | `ISPCTF{That_Is_Rail_Fence_Cipher}`|
-| [Base 64](#Base-64) | Crypto | `ISPCTF{B4s3_S4u_4}`|
-| [ROT_ROT](#ROT-ROT) | Crypto | `ISPCTF{R0T_1S_4M4Z1N9!!!}`|
+| [Rail_fence](#Rail_fence) | Crypto | `ISPCTF{That_Is_Rail_Fence_Cipher}`|
+| [Base 64](#Base_64) | Crypto | `ISPCTF{B4s3_S4u_4}`|
+| [ROT_ROT](#ROT_ROT) | Crypto | `ISPCTF{R0T_1S_4M4Z1N9!!!}`|
 | [TOR74](#TOR74) | Crypto | `ISPCTF{N0w_u_kN0W_how_2_use_R47}`|
-| [rsa_1](#rsa-1) | Crypto | `ISPCTF{welcome_to_rsa}`|
+| [rsa_1](#rsa_1) | Crypto | `ISPCTF{welcome_to_rsa}`|
 | [Xor Cipher] | Crypto | `ISPCTF{X0r_C1ph3r_1s_s0_S1mpl3}`|
-| [rsa_3](#rsa-3) | Crypto | `ISPCTF{e=1_any_thing_not_change}`|
-| [rsa_2](#rsa-2) | Crypto | `ISPCTF{Now_you_know_factor_N}`|
-| [Hash Number](#Hash-Number) | Crypto | `ISPCTF{That_iS_Special_Number}` |
-| [Pointer 2](#Pointer-2) | RE | `ISP{302753d5b52596eb75b89c11cc30e5c7}`|
+| [rsa_3](#rsa_3) | Crypto | `ISPCTF{e=1_any_thing_not_change}`|
+| [rsa_2](#rsa_2) | Crypto | `ISPCTF{Now_you_know_factor_N}`|
+| [Hash Number](#Hash_Number) | Crypto | `ISPCTF{That_iS_Special_Number}` |
+| [Pointer 2](#Pointer_2) | RE | `ISP{302753d5b52596eb75b89c11cc30e5c7}`|
 | [Basic Rev] | RE | `ispctf{St4RbuCk5_c0ffee}`|
 | [Pointer 1] | RE | `flag{5h1n1n'_5t4r5_ju5t_l1k3_ur_sm1l3}`|
-| [Basic For](#Basic-For) | Forensics | `ISPCTF{H4i_d3p_tr41_v0_c0_10}`|
-| [New Chunk](#New-Chunk) | Forensics | `ISPCTF{Thank_to_fix_this_file}`|
-| [Metadata is so good](#Metadata-is-so-good) | Forensics | `ISPCTF{137_ch3ck_m3tadata}`|
-| [What is File Format?](#What-is-File-Format) | Forensics | `ISPCTF{0n3_f0r_a11_d3kn}`|
+| [Basic For](#Basic_For) | Forensics | `ISPCTF{H4i_d3p_tr41_v0_c0_10}`|
+| [New Chunk](#New_Chunk) | Forensics | `ISPCTF{Thank_to_fix_this_file}`|
+| [Metadata is so good](#Metadata_is_so_good) | Forensics | `ISPCTF{137_ch3ck_m3tadata}`|
+| [What is File Format?](#What_is_File_Format) | Forensics | `ISPCTF{0n3_f0r_a11_d3kn}`|
 | [QR](#QR) | Forensics | `ISPCTF{h4i_d3p_z4i_y34h_y34h}`|
-| [Catch Me](#Catch-Me) | Forensics | `ISPCTF{c4tch_m3}`|
-| [Gờ rép](#Gờ-rép) | Forensics | `ISPCTF{G00d_luck_N3xt_Y34r}`|
-| [Good, nice, excellent](#Good-nice-excellent) | Forensics | `ISPCTF{y0u_kn0vv_m0r3_t0o1}`|
+| [Catch Me](#Catch_Me) | Forensics | `ISPCTF{c4tch_m3}`|
+| [Gờ rép](#Gờ_rép) | Forensics | `ISPCTF{G00d_luck_N3xt_Y34r}`|
+| [Good, nice, excellent](#Good_nice_excellent) | Forensics | `ISPCTF{y0u_kn0vv_m0r3_t0o1}`|
 | [Malware](#Malware) | Forensics | `ISPCTF{trojan.midie/cometer}`|
-| [Information PCAP](#Information-PCAP) | Forensics | `ISPCTF{Rice_as_one}`|
-| [Không chỉ là giao thức](#Không-chỉ-là-giao-thức) | Forensics | `ISPCTF{Ch3cK_Pr0toco1}`|
-| [Beautiful day to drive :>](#Beautiful-day-to-drive) | OSINT | `ISPCTF{MEANDERING_WAY}`|
-| [Find me before they do!](#Find-me-before-they-do) | OSINT | `ISPCTF{860-232-8886}`|
+| [Information PCAP](#Information_PCAP) | Forensics | `ISPCTF{Rice_as_one}`|
+| [Không chỉ là giao thức](#Không_chỉ_là_giao_thức) | Forensics | `ISPCTF{Ch3cK_Pr0toco1}`|
+| [Beautiful day to drive :>](#Beautiful_day_to_drive) | OSINT | `ISPCTF{MEANDERING_WAY}`|
+| [Find me before they do!](#Find_me_before_they_do) | OSINT | `ISPCTF{860-232-8886}`|
 | [Find me before they do! (2)] | OSINT | `ISPCTF{70_FOUR_MILE_RD}`|
 | [Conversation] | General | `ISPCTF{here_is_random_messageBruhh}`|
 
